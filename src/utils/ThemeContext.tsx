@@ -1,14 +1,10 @@
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import { saveToLocalStorage, loadFromLocalStorage } from './localStorage';
+import { ThemeContextType } from '../types/ThemeContext';
+
 
 // Constant for localStorage key (for dark mode preference)
 const DARK_MODE_KEY = 'darkMode' as const;
-
-// Theme context value type (for strict typing)
-export interface ThemeContextType {
-  darkMode: boolean;
-  toggleDarkMode: () => void;
-}
 
 // Create a strictly typed context for theme
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);

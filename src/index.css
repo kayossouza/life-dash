@@ -1,3 +1,10 @@
+/*
+  index.css review:
+  - Tailwind base, components, and utilities are imported below. Custom CSS is used for global styles, dark mode, and animation classes.
+  - Button, hover, and animation classes are used in components and are not repeated unnecessarily.
+  - This file is intentionally minimal and should remain so for maintainability.
+*/
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

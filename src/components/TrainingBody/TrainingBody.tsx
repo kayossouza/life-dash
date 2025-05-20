@@ -1,10 +1,8 @@
 import React from 'react';
-import { useTheme } from '../../utils/ThemeContext';
 import { useAppData } from '../../utils/DataContext';
 
 const TrainingBody: React.FC = () => {
   const { trainings, updateTraining, toggleTrainingCompleted } = useAppData();
-  useTheme(); // Use theme context
 
   // Call the toggleTrainingCompleted function directly
   const handleToggleTrainingCompleted = (index: number) => {

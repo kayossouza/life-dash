@@ -1,50 +1,15 @@
 import React, { createContext, useContext, useEffect, useMemo, useState, ReactNode } from 'react';
-import { saveToLocalStorage, loadFromLocalStorage } from './localStorage';
+import { saveToLocalStorage, loadFromLocalStorage, getTodayKey } from './localStorage';
+import type {
+  AppData,
+  DailyHabit,
+  Training,
+  MentalSleep,
+  WeeklyReview,
+  WeeklyView
+} from '../types/AppData';
 
-// --- Types ---
-// Data types for all tracked app data and context
-export interface DailyHabit {
-  id: string;
-  label: string;
-  completed: boolean;
-}
-
-export interface Training {
-  day: string;
-  plannedTraining: string;
-  completed: boolean;
-}
-
-export interface MentalSleep {
-  sleepTime: string;
-  energyLevel: number;
-  usedBreathingTechnique: boolean;
-  gratitude: string;
-}
-
-export interface WeeklyReview {
-  didWell: string;
-  canImprove: string;
-  nextWeekGoal: string;
-  toAvoid: string;
-}
-
-export interface WeeklyView {
-  weekNumber: string;
-  weeklyObjective: string;
-  focusWord: string;
-}
-
-export interface AppData {
-  dailyHabits: DailyHabit[];
-  lastHabitReset: string;
-  trainings: Training[];
-  mentalSleep: MentalSleep;
-  lastMentalUpdate: string;
-  weeklyReview: WeeklyReview;
-  weeklyView: WeeklyView;
-}
-
+// Refactored: DataContextType is now defined here, using imported types
 export interface DataContextType extends AppData {
   toggleHabit: (id: string) => void;
   resetAllHabits: () => void;
@@ -55,6 +20,8 @@ export interface DataContextType extends AppData {
   updateWeeklyView: (field: keyof WeeklyView, value: WeeklyView[keyof WeeklyView]) => void;
 }
 
+// --- Defaults ---
+// Default values for app data
 const defaultData: AppData = {
   dailyHabits: [
     { id: 'wake-up', label: 'Acordou às 05:30', completed: false },
@@ -108,17 +75,22 @@ interface DataProviderProps {
 export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
   const [appData, setAppData] = useState<AppData>(defaultData);
 
+  // Refactored: Use named constant for magic number (habit reset time)
+  const HABIT_RESET_HOUR = 5; // 5:00 AM
+
+  // Refactored: Use named constant for localStorage key
+  const LOCAL_STORAGE_KEY = 'appData' as const;
+
   // Load all data from localStorage on initial mount
   // (and reset daily/mental data if needed)
   useEffect(() => {
     const loadedData: AppData = {
       ...defaultData,
-      ...loadFromLocalStorage<AppData>('appData', defaultData)
+      ...loadFromLocalStorage<AppData>(LOCAL_STORAGE_KEY, defaultData)
     };
     setAppData(loadedData);
 
-    // Reset habits if needed (if last reset is not today)
-    const today = new Date().toDateString();
+    const today = getTodayKey(HABIT_RESET_HOUR);
     if (loadedData.lastHabitReset !== today) {
       setAppData(prev => ({
         ...prev,
@@ -126,7 +98,6 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
         lastHabitReset: today
       }));
     }
-    // Reset mental items if needed (if last update is not today)
     if (loadedData.lastMentalUpdate !== today) {
       setAppData(prev => ({
         ...prev,
@@ -142,20 +113,20 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
     setAppData(prev => {
       const newHabits = prev.dailyHabits.map(h => h.id === id ? { ...h, completed: !h.completed } : h);
       const updated = { ...prev, dailyHabits: newHabits };
-      saveToLocalStorage('appData', updated);
+      saveToLocalStorage(LOCAL_STORAGE_KEY, updated);
       return updated;
     });
   };
 
   const resetAllHabits = (): void => {
-    const today = new Date().toDateString();
+    const today = getTodayKey(HABIT_RESET_HOUR);
     setAppData(prev => {
       const updated = {
         ...prev,
         dailyHabits: prev.dailyHabits.map(h => ({ ...h, completed: false })),
         lastHabitReset: today
       };
-      saveToLocalStorage('appData', updated);
+      saveToLocalStorage(LOCAL_STORAGE_KEY, updated);
       return updated;
     });
   };
@@ -166,7 +137,7 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
       const newTrainings = [...prev.trainings];
       newTrainings[index] = { ...newTrainings[index], ...value };
       const updated = { ...prev, trainings: newTrainings };
-      saveToLocalStorage('appData', updated);
+      saveToLocalStorage(LOCAL_STORAGE_KEY, updated);
       return updated;
     });
   };
@@ -177,7 +148,7 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
       const newTrainings = [...prev.trainings];
       newTrainings[index] = { ...newTrainings[index], completed: !newTrainings[index].completed };
       const updated = { ...prev, trainings: newTrainings };
-      saveToLocalStorage('appData', updated);
+      saveToLocalStorage(LOCAL_STORAGE_KEY, updated);
       return updated;
     });
   };
@@ -187,9 +158,9 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
       const updated = {
         ...prev,
         mentalSleep: { ...prev.mentalSleep, [field]: value },
-        lastMentalUpdate: new Date().toDateString()
+        lastMentalUpdate: getTodayKey(HABIT_RESET_HOUR)
       };
-      saveToLocalStorage('appData', updated);
+      saveToLocalStorage(LOCAL_STORAGE_KEY, updated);
       return updated;
     });
   };
@@ -200,7 +171,7 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
         ...prev,
         weeklyReview: { ...prev.weeklyReview, [field]: value }
       };
-      saveToLocalStorage('appData', updated);
+      saveToLocalStorage(LOCAL_STORAGE_KEY, updated);
       return updated;
     });
   };
@@ -211,7 +182,7 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
         ...prev,
         weeklyView: { ...prev.weeklyView, [field]: value }
       };
-      saveToLocalStorage('appData', updated);
+      saveToLocalStorage(LOCAL_STORAGE_KEY, updated);
       return updated;
     });
   };

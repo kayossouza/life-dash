@@ -1,0 +1,1602 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+4. Repository files, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+<additional_info>
+
+</additional_info>
+
+</file_summary>
+
+<directory_structure>
+public/
+  vite.svg
+src/
+  components/
+    DailyHabits/
+      DailyHabits.tsx
+    DarkModeToggle/
+      DarkModeToggle.tsx
+    Dashboard/
+      Dashboard.tsx
+    MentalSleep/
+      MentalSleep.tsx
+    TrainingBody/
+      TrainingBody.tsx
+    WeeklyReview/
+      WeeklyReview.tsx
+    WeeklyView/
+      WeeklyView.tsx
+  utils/
+    DataContext.tsx
+    localStorage.ts
+    ThemeContext.tsx
+  App.tsx
+  index.css
+  main.tsx
+.gitignore
+eslint.config.js
+GUIDELINES.md
+index.html
+package.json
+postcss.config.js
+README.md
+tailwind.config.js
+tsconfig.json
+vite.config.js
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="public/vite.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--logos" width="31.88" height="32" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 257"><defs><linearGradient id="IconifyId1813088fe1fbc01fb466" x1="-.828%" x2="57.636%" y1="7.652%" y2="78.411%"><stop offset="0%" stop-color="#41D1FF"></stop><stop offset="100%" stop-color="#BD34FE"></stop></linearGradient><linearGradient id="IconifyId1813088fe1fbc01fb467" x1="43.376%" x2="50.316%" y1="2.242%" y2="89.03%"><stop offset="0%" stop-color="#FFEA83"></stop><stop offset="8.333%" stop-color="#FFDD35"></stop><stop offset="100%" stop-color="#FFA800"></stop></linearGradient></defs><path fill="url(#IconifyId1813088fe1fbc01fb466)" d="M255.153 37.938L134.897 252.976c-2.483 4.44-8.862 4.466-11.382.048L.875 37.958c-2.746-4.814 1.371-10.646 6.827-9.67l120.385 21.517a6.537 6.537 0 0 0 2.322-.004l117.867-21.483c5.438-.991 9.574 4.796 6.877 9.62Z"></path><path fill="url(#IconifyId1813088fe1fbc01fb467)" d="M185.432.063L96.44 17.501a3.268 3.268 0 0 0-2.634 3.014l-5.474 92.456a3.268 3.268 0 0 0 3.997 3.378l24.777-5.718c2.318-.535 4.413 1.507 3.936 3.838l-7.361 36.047c-.495 2.426 1.782 4.5 4.151 3.78l15.304-4.649c2.372-.72 4.652 1.36 4.15 3.788l-11.698 56.621c-.732 3.542 3.979 5.473 5.943 2.437l1.313-2.028l72.516-144.72c1.215-2.423-.88-5.186-3.54-4.672l-25.505 4.922c-2.396.462-4.435-1.77-3.759-4.114l16.646-57.705c.677-2.35-1.37-4.583-3.769-4.113Z"></path></svg>
+</file>
+
+<file path="src/App.tsx">
+import React from 'react';
+import Dashboard from './components/Dashboard/Dashboard';
+import { ThemeProvider } from './utils/ThemeContext';
+import { DataProvider } from './utils/DataContext';
+import './App.css';
+
+const App: React.FC = () => {
+  return (
+    <ThemeProvider>
+      <DataProvider>
+        <Dashboard />
+      </DataProvider>
+    </ThemeProvider>
+  );
+};
+
+export default App;
+</file>
+
+<file path="src/main.tsx">
+import React from 'react';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import './index.css';
+import App from './App';
+
+const rootElement = document.getElementById('root');
+if (!rootElement) throw new Error('Root element not found');
+
+createRoot(rootElement).render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+</file>
+
+<file path=".gitignore">
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+</file>
+
+<file path="eslint.config.js">
+import js from '@eslint/js'
+import globals from 'globals'
+import reactHooks from 'eslint-plugin-react-hooks'
+import reactRefresh from 'eslint-plugin-react-refresh'
+
+export default [
+  { ignores: ['dist'] },
+  {
+    files: ['**/*.{js,jsx}'],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.browser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        ecmaFeatures: { jsx: true },
+        sourceType: 'module',
+      },
+    },
+    plugins: {
+      'react-hooks': reactHooks,
+      'react-refresh': reactRefresh,
+    },
+    rules: {
+      ...js.configs.recommended.rules,
+      ...reactHooks.configs.recommended.rules,
+      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+      'react-refresh/only-export-components': [
+        'warn',
+        { allowConstantExport: true },
+      ],
+    },
+  },
+]
+</file>
+
+<file path="GUIDELINES.md">
+Code is clean if it can be understood easily – by everyone on the team. Clean code can be read and enhanced by a developer other than its original author. With understandability comes readability, changeability, extensibility and maintainability.
+_____________________________________
+
+## General rules
+1. Follow standard conventions.
+2. Keep it simple stupid. Simpler is always better. Reduce complexity as much as possible.
+3. Boy scout rule. Leave the campground cleaner than you found it.
+4. Always find root cause. Always look for the root cause of a problem.
+
+## Design rules
+1. Keep configurable data at high levels.
+2. Prefer polymorphism to if/else or switch/case.
+3. Separate multi-threading code.
+4. Prevent over-configurability.
+5. Use dependency injection.
+6. Follow Law of Demeter. A class should know only its direct dependencies.
+
+## Understandability tips
+1. Be consistent. If you do something a certain way, do all similar things in the same way.
+2. Use explanatory variables.
+3. Encapsulate boundary conditions. Boundary conditions are hard to keep track of. Put the processing for them in one place.
+4. Prefer dedicated value objects to primitive type.
+5. Avoid logical dependency. Don't write methods which works correctly depending on something else in the same class.
+6. Avoid negative conditionals.
+
+## Names rules
+1. Choose descriptive and unambiguous names.
+2. Make meaningful distinction.
+3. Use pronounceable names.
+4. Use searchable names.
+5. Replace magic numbers with named constants.
+6. Avoid encodings. Don't append prefixes or type information.
+
+## Functions rules
+1. Small.
+2. Do one thing.
+3. Use descriptive names.
+4. Prefer fewer arguments.
+5. Have no side effects.
+6. Don't use flag arguments. Split method into several independent methods that can be called from the client without the flag.
+
+## Comments rules
+1. Always try to explain yourself in code.
+2. Don't be redundant.
+3. Don't add obvious noise.
+4. Don't use closing brace comments.
+5. Don't comment out code. Just remove.
+6. Use as explanation of intent.
+7. Use as clarification of code.
+8. Use as warning of consequences.
+
+## Source code structure
+1. Separate concepts vertically.
+2. Related code should appear vertically dense.
+3. Declare variables close to their usage.
+4. Dependent functions should be close.
+5. Similar functions should be close.
+6. Place functions in the downward direction.
+7. Keep lines short.
+8. Don't use horizontal alignment.
+9. Use white space to associate related things and disassociate weakly related.
+10. Don't break indentation.
+
+## Objects and data structures
+1. Hide internal structure.
+2. Prefer data structures.
+3. Avoid hybrids structures (half object and half data).
+4. Should be small.
+5. Do one thing.
+6. Small number of instance variables.
+7. Base class should know nothing about their derivatives.
+8. Better to have many functions than to pass some code into a function to select a behavior.
+9. Prefer non-static methods to static methods.
+
+## Tests
+1. One assert per test.
+2. Readable.
+3. Fast.
+4. Independent.
+5. Repeatable.
+
+## Code smells
+1. Rigidity. The software is difficult to change. A small change causes a cascade of subsequent changes.
+2. Fragility. The software breaks in many places due to a single change.
+3. Immobility. You cannot reuse parts of the code in other projects because of involved risks and high effort.
+4. Needless Complexity.
+5. Needless Repetition.
+6. Opacity. The code is hard to understand.
+</file>
+
+<file path="index.html">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel de Vida Ninja</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+</file>
+
+<file path="postcss.config.js">
+export default {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+}
+</file>
+
+<file path="README.md">
+# React + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+</file>
+
+<file path="tailwind.config.js">
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        'neutral-light': '#f5f5f5',
+        'neutral-medium': '#e0e0e0',
+        'neutral-dark': '#404040',
+        'dark': {
+          'bg': '#121212',
+          'surface': '#1e1e1e',
+          'border': '#333333',
+          'text': '#e0e0e0',
+          'muted': '#a0a0a0',
+          'accent': '#3b82f6'
+        }
+      },
+      borderRadius: {
+        'xl': '1rem',
+      },
+      boxShadow: {
+        'soft': '0 2px 10px rgba(0, 0, 0, 0.05)',
+        'soft-lg': '0 10px 25px -5px rgba(0, 0, 0, 0.1)',
+        'inner-soft': 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
+        'dark-soft': '0 2px 10px rgba(0, 0, 0, 0.3)',
+        'dark-lg': '0 10px 25px -5px rgba(0, 0, 0, 0.5)',
+      },
+      animation: {
+        'pulse-subtle': 'pulse-subtle 3s infinite',
+        'fade-in': 'fadeIn 0.3s ease-in forwards',
+        'slide-in': 'slideIn 0.3s ease-out forwards',
+      },
+      keyframes: {
+        'pulse-subtle': {
+          '0%, 100%': { opacity: 1 },
+          '50%': { opacity: 0.8 },
+        },
+        fadeIn: {
+          '0%': { opacity: 0 },
+          '100%': { opacity: 1 },
+        },
+        slideIn: {
+          '0%': { transform: 'translateY(10px)', opacity: 0 },
+          '100%': { transform: 'translateY(0)', opacity: 1 },
+        },
+      },
+      transitionProperty: {
+        'height': 'height',
+        'spacing': 'margin, padding',
+      }
+    },
+  },
+  plugins: [
+    function({ addUtilities }) {
+      const newUtilities = {
+        '.bg-pattern-light': {
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23f0f0f0' fill-opacity='0.6' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E")`,
+        },
+        '.bg-pattern-dark': {
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23232323' fill-opacity='0.4' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E")`,
+        },
+      };
+      addUtilities(newUtilities);
+    },
+  ],
+}
+</file>
+
+<file path="tsconfig.json">
+{
+  "compilerOptions": {
+    /* Visit https://aka.ms/tsconfig to read more about this file */
+
+    /* Projects */
+    // "incremental": true,                              /* Save .tsbuildinfo files to allow for incremental compilation of projects. */
+    // "composite": true,                                /* Enable constraints that allow a TypeScript project to be used with project references. */
+    // "tsBuildInfoFile": "./.tsbuildinfo",              /* Specify the path to .tsbuildinfo incremental compilation file. */
+    // "disableSourceOfProjectReferenceRedirect": true,  /* Disable preferring source files instead of declaration files when referencing composite projects. */
+    // "disableSolutionSearching": true,                 /* Opt a project out of multi-project reference checking when editing. */
+    // "disableReferencedProjectLoad": true,             /* Reduce the number of projects loaded automatically by TypeScript. */
+
+    /* Language and Environment */
+    "target": "es2016",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    // "lib": [],                                        /* Specify a set of bundled library declaration files that describe the target runtime environment. */
+    "jsx": "react-jsx",                                  /* Specify what JSX code is generated. */
+    // "libReplacement": true,                           /* Enable lib replacement. */
+    // "experimentalDecorators": true,                   /* Enable experimental support for legacy experimental decorators. */
+    // "emitDecoratorMetadata": true,                    /* Emit design-type metadata for decorated declarations in source files. */
+    // "jsxFactory": "",                                 /* Specify the JSX factory function used when targeting React JSX emit, e.g. 'React.createElement' or 'h'. */
+    // "jsxFragmentFactory": "",                         /* Specify the JSX Fragment reference used for fragments when targeting React JSX emit e.g. 'React.Fragment' or 'Fragment'. */
+    // "jsxImportSource": "",                            /* Specify module specifier used to import the JSX factory functions when using 'jsx: react-jsx*'. */
+    // "reactNamespace": "",                             /* Specify the object invoked for 'createElement'. This only applies when targeting 'react' JSX emit. */
+    // "noLib": true,                                    /* Disable including any library files, including the default lib.d.ts. */
+    // "useDefineForClassFields": true,                  /* Emit ECMAScript-standard-compliant class fields. */
+    // "moduleDetection": "auto",                        /* Control what method is used to detect module-format JS files. */
+
+    /* Modules */
+    "module": "commonjs",                                /* Specify what module code is generated. */
+    "rootDir": "src",                                    /* Specify the root folder within your source files. */
+    // "moduleResolution": "node10",                     /* Specify how TypeScript looks up a file from a given module specifier. */
+    // "baseUrl": "./",                                  /* Specify the base directory to resolve non-relative module names. */
+    // "paths": {},                                      /* Specify a set of entries that re-map imports to additional lookup locations. */
+    // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
+    // "typeRoots": [],                                  /* Specify multiple folders that act like './node_modules/@types'. */
+    // "types": [],                                      /* Specify type package names to be included without being referenced in a source file. */
+    // "allowUmdGlobalAccess": true,                     /* Allow accessing UMD globals from modules. */
+    // "moduleSuffixes": [],                             /* List of file name suffixes to search when resolving a module. */
+    // "allowImportingTsExtensions": true,               /* Allow imports to include TypeScript file extensions. Requires '--moduleResolution bundler' and either '--noEmit' or '--emitDeclarationOnly' to be set. */
+    // "rewriteRelativeImportExtensions": true,          /* Rewrite '.ts', '.tsx', '.mts', and '.cts' file extensions in relative import paths to their JavaScript equivalent in output files. */
+    // "resolvePackageJsonExports": true,                /* Use the package.json 'exports' field when resolving package imports. */
+    // "resolvePackageJsonImports": true,                /* Use the package.json 'imports' field when resolving imports. */
+    // "customConditions": [],                           /* Conditions to set in addition to the resolver-specific defaults when resolving imports. */
+    // "noUncheckedSideEffectImports": true,             /* Check side effect imports. */
+    "resolveJsonModule": true,                           /* Enable importing .json files. */
+    // "allowArbitraryExtensions": true,                 /* Enable importing files with any extension, provided a declaration file is present. */
+    // "noResolve": true,                                /* Disallow 'import's, 'require's or '<reference>'s from expanding the number of files TypeScript should add to a project. */
+
+    /* JavaScript Support */
+    // "allowJs": true,                                  /* Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. */
+    // "checkJs": true,                                  /* Enable error reporting in type-checked JavaScript files. */
+    // "maxNodeModuleJsDepth": 1,                        /* Specify the maximum folder depth used for checking JavaScript files from 'node_modules'. Only applicable with 'allowJs'. */
+
+    /* Emit */
+    // "declaration": true,                              /* Generate .d.ts files from TypeScript and JavaScript files in your project. */
+    // "declarationMap": true,                           /* Create sourcemaps for d.ts files. */
+    // "emitDeclarationOnly": true,                      /* Only output d.ts files and not JavaScript files. */
+    // "sourceMap": true,                                /* Create source map files for emitted JavaScript files. */
+    // "inlineSourceMap": true,                          /* Include sourcemap files inside the emitted JavaScript. */
+    "noEmit": true,                                      /* Disable emitting files from a compilation. */
+    // "outFile": "./",                                  /* Specify a file that bundles all outputs into one JavaScript file. If 'declaration' is true, also designates a file that bundles all .d.ts output. */
+    // "outDir": "./",                                   /* Specify an output folder for all emitted files. */
+    // "removeComments": true,                           /* Disable emitting comments. */
+    // "importHelpers": true,                            /* Allow importing helper functions from tslib once per project, instead of including them per-file. */
+    // "downlevelIteration": true,                       /* Emit more compliant, but verbose and less performant JavaScript for iteration. */
+    // "sourceRoot": "",                                 /* Specify the root path for debuggers to find the reference source code. */
+    // "mapRoot": "",                                    /* Specify the location where debugger should locate map files instead of generated locations. */
+    // "inlineSources": true,                            /* Include source code in the sourcemaps inside the emitted JavaScript. */
+    // "emitBOM": true,                                  /* Emit a UTF-8 Byte Order Mark (BOM) in the beginning of output files. */
+    // "newLine": "crlf",                                /* Set the newline character for emitting files. */
+    // "stripInternal": true,                            /* Disable emitting declarations that have '@internal' in their JSDoc comments. */
+    // "noEmitHelpers": true,                            /* Disable generating custom helper functions like '__extends' in compiled output. */
+    // "noEmitOnError": true,                            /* Disable emitting files if any type checking errors are reported. */
+    // "preserveConstEnums": true,                       /* Disable erasing 'const enum' declarations in generated code. */
+    // "declarationDir": "./",                           /* Specify the output directory for generated declaration files. */
+
+    /* Interop Constraints */
+    // "isolatedModules": true,                          /* Ensure that each file can be safely transpiled without relying on other imports. */
+    // "verbatimModuleSyntax": true,                     /* Do not transform or elide any imports or exports not marked as type-only, ensuring they are written in the output file's format based on the 'module' setting. */
+    // "isolatedDeclarations": true,                     /* Require sufficient annotation on exports so other tools can trivially generate declaration files. */
+    // "erasableSyntaxOnly": true,                       /* Do not allow runtime constructs that are not part of ECMAScript. */
+    // "allowSyntheticDefaultImports": true,             /* Allow 'import x from y' when a module doesn't have a default export. */
+    "esModuleInterop": true,                             /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
+    // "preserveSymlinks": true,                         /* Disable resolving symlinks to their realpath. This correlates to the same flag in node. */
+    "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
+
+    /* Type Checking */
+    "strict": true,                                      /* Enable all strict type-checking options. */
+    // "noImplicitAny": true,                            /* Enable error reporting for expressions and declarations with an implied 'any' type. */
+    // "strictNullChecks": true,                         /* When type checking, take into account 'null' and 'undefined'. */
+    // "strictFunctionTypes": true,                      /* When assigning functions, check to ensure parameters and the return values are subtype-compatible. */
+    // "strictBindCallApply": true,                      /* Check that the arguments for 'bind', 'call', and 'apply' methods match the original function. */
+    // "strictPropertyInitialization": true,             /* Check for class properties that are declared but not set in the constructor. */
+    // "strictBuiltinIteratorReturn": true,              /* Built-in iterators are instantiated with a 'TReturn' type of 'undefined' instead of 'any'. */
+    // "noImplicitThis": true,                           /* Enable error reporting when 'this' is given the type 'any'. */
+    // "useUnknownInCatchVariables": true,               /* Default catch clause variables as 'unknown' instead of 'any'. */
+    // "alwaysStrict": true,                             /* Ensure 'use strict' is always emitted. */
+    // "noUnusedLocals": true,                           /* Enable error reporting when local variables aren't read. */
+    // "noUnusedParameters": true,                       /* Raise an error when a function parameter isn't read. */
+    // "exactOptionalPropertyTypes": true,               /* Interpret optional property types as written, rather than adding 'undefined'. */
+    // "noImplicitReturns": true,                        /* Enable error reporting for codepaths that do not explicitly return in a function. */
+    // "noFallthroughCasesInSwitch": true,               /* Enable error reporting for fallthrough cases in switch statements. */
+    // "noUncheckedIndexedAccess": true,                 /* Add 'undefined' to a type when accessed using an index. */
+    // "noImplicitOverride": true,                       /* Ensure overriding members in derived classes are marked with an override modifier. */
+    // "noPropertyAccessFromIndexSignature": true,       /* Enforces using indexed accessors for keys declared using an indexed type. */
+    // "allowUnusedLabels": true,                        /* Disable error reporting for unused labels. */
+    // "allowUnreachableCode": true,                     /* Disable error reporting for unreachable code. */
+
+    /* Completeness */
+    // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
+    "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
+  }
+}
+</file>
+
+<file path="vite.config.js">
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react()],
+})
+</file>
+
+<file path="src/components/DailyHabits/DailyHabits.tsx">
+import React from 'react';
+import { useTheme } from '../../utils/ThemeContext';
+import { useAppData } from '../../utils/DataContext';
+
+const DailyHabits: React.FC = () => {
+  const { dailyHabits, toggleHabit, resetAllHabits } = useAppData();
+  useTheme(); // Use theme context for dark mode
+
+  return (
+    <div className="bg-white dark:bg-dark-surface p-6 rounded-xl shadow-soft dark:shadow-dark-soft transition-all duration-300 hover:shadow-soft-lg dark:hover:shadow-dark-lg animate-on-mount hover-lift">
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100">Hábitos Diários</h2>
+        <button
+          className="ml-2 px-3 py-1 text-sm rounded bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 hover:bg-blue-200 dark:hover:bg-blue-800 focus:outline-none"
+          onClick={resetAllHabits}
+          type="button"
+        >
+          Resetar Tudo
+        </button>
+      </div>
+      <ul className="space-y-2">
+        {dailyHabits.map(habit => (
+          <li key={habit.id} className="flex items-center">
+            <input
+              id={`habit-${habit.id}`}
+              type="checkbox"
+              checked={habit.completed}
+              onChange={() => toggleHabit(habit.id)}
+              className="mr-3 h-5 w-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700"
+            />
+            <label htmlFor={`habit-${habit.id}`} className={
+              `text-gray-700 dark:text-gray-200 select-none ${habit.completed ? 'line-through opacity-60' : ''}`
+            }>
+              {habit.label}
+            </label>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default DailyHabits;
+</file>
+
+<file path="src/components/DarkModeToggle/DarkModeToggle.tsx">
+import React from 'react';
+import { useTheme } from '../../utils/ThemeContext';
+
+const DarkModeToggle: React.FC = () => {
+  const { darkMode, toggleDarkMode } = useTheme();
+
+  return (
+    <button
+      onClick={toggleDarkMode}
+      className="p-2 rounded-full transition-all duration-300 hover:bg-gray-200 dark:hover:bg-dark-bg transform hover:scale-110 active:scale-95"
+      aria-label="Toggle dark mode"
+    >
+      {darkMode ? (
+        // Sun icon for light mode
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6 text-yellow-300 animate-pulse-subtle"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+          />
+        </svg>
+      ) : (
+        // Moon icon for dark mode
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6 text-gray-700"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+          />
+        </svg>
+      )}
+    </button>
+  );
+};
+
+export default DarkModeToggle;
+</file>
+
+<file path="src/components/Dashboard/Dashboard.tsx">
+import React, { useEffect } from 'react';
+import WeeklyView from '../WeeklyView/WeeklyView';
+import DailyHabits from '../DailyHabits/DailyHabits';
+import TrainingBody from '../TrainingBody/TrainingBody';
+import MentalSleep from '../MentalSleep/MentalSleep';
+import WeeklyReview from '../WeeklyReview/WeeklyReview';
+import DarkModeToggle from '../DarkModeToggle/DarkModeToggle';
+import { useTheme } from '../../utils/ThemeContext';
+
+const Dashboard: React.FC = () => {
+  const { darkMode } = useTheme();
+
+  // Apply animation classes when component mounts
+  useEffect(() => {
+    const elements = document.querySelectorAll('.animate-on-mount');
+    elements.forEach((el, i) => {
+      setTimeout(() => {
+        el.classList.add('animate-fade-in');
+      }, i * 100);
+    });
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-gray-100 dark:bg-dark-bg transition-colors duration-300">
+      <header className="bg-white dark:bg-dark-surface shadow-soft dark:shadow-dark-soft transition-all duration-300">
+        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+          <h1 className="text-3xl font-bold text-gray-800 dark:text-dark-text">Painel de Vida Ninja</h1>
+          <DarkModeToggle />
+        </div>
+      </header>
+      <main className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          {/* Top section - Weekly View */}
+          <div className="col-span-1 md:col-span-2 animate-on-mount">
+            <WeeklyView />
+          </div>
+          {/* Middle sections */}
+          <div className="animate-on-mount">
+            <DailyHabits />
+          </div>
+          <div className="animate-on-mount">
+            <TrainingBody />
+          </div>
+          <div className="animate-on-mount">
+            <MentalSleep />
+          </div>
+          {/* Bottom section - Weekly Review */}
+          <div className="col-span-1 md:col-span-2 animate-on-mount">
+            <WeeklyReview />
+          </div>
+        </div>
+      </main>
+      <footer className="bg-white dark:bg-dark-surface border-t border-gray-200 dark:border-dark-border transition-colors duration-300">
+        <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-500 dark:text-dark-muted">
+          Painel de Vida Ninja - Desenvolvido para monitorar hábitos e evolução pessoal
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default Dashboard;
+</file>
+
+<file path="src/components/MentalSleep/MentalSleep.tsx">
+import React from 'react';
+import { useTheme } from '../../utils/ThemeContext';
+import { useAppData } from '../../utils/DataContext';
+
+const MentalSleep: React.FC = () => {
+  const { mentalSleep, updateMentalData } = useAppData();
+  useTheme(); // Use theme context
+
+  const toggleBreathingTechnique = () => {
+    updateMentalData('usedBreathingTechnique', !mentalSleep.usedBreathingTechnique);
+  };
+
+  return (
+    <div className="bg-white dark:bg-dark-surface p-6 rounded-xl shadow-soft dark:shadow-dark-soft transition-all duration-300 hover:shadow-soft-lg dark:hover:shadow-dark-lg animate-on-mount hover-lift">
+      <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-dark-text">Mental e Sono</h2>
+      <div className="grid grid-cols-1 gap-4">
+        <div>
+          <label htmlFor="sleepTime" className="block text-sm font-medium text-gray-700 dark:text-dark-muted mb-1">
+            Horário que dormiu ontem
+          </label>
+          <input
+            type="time"
+            id="sleepTime"
+            value={mentalSleep.sleepTime}
+            onChange={(e) => updateMentalData('sleepTime', e.target.value)}
+            className="w-full p-2 border border-gray-300 dark:border-dark-border rounded-md bg-white dark:bg-dark-bg text-gray-800 dark:text-dark-text focus:ring-2 focus:ring-blue-500 dark:focus:ring-dark-accent focus:border-transparent transition-colors duration-200"
+          />
+        </div>
+        <div>
+          <label htmlFor="energyLevel" className="block text-sm font-medium text-gray-700 dark:text-dark-muted mb-1">
+            Nível de energia ao acordar (1-5)
+          </label>
+          <div className="flex items-center space-x-1">
+            {[1, 2, 3, 4, 5].map((level) => (
+              <button
+                key={level}
+                onClick={() => updateMentalData('energyLevel', level)}
+                className={`w-8 h-8 flex items-center justify-center rounded-full
+                  ${mentalSleep.energyLevel === level 
+                    ? 'bg-blue-500 dark:bg-dark-accent text-white' 
+                    : 'bg-gray-200 dark:bg-dark-bg text-gray-700 dark:text-dark-muted'
+                  } transition-colors duration-200`}
+              >
+                {level}
+              </button>
+            ))}
+          </div>
+        </div>
+        <div className="flex items-center py-2">
+          <button
+            onClick={toggleBreathingTechnique}
+            className={`w-6 h-6 flex items-center justify-center rounded border ${
+              mentalSleep.usedBreathingTechnique 
+                ? 'bg-green-500 border-green-500 text-white' 
+                : 'border-gray-300 dark:border-dark-border'
+            } mr-3 transition-colors duration-200`}
+          >
+            {mentalSleep.usedBreathingTechnique && "✓"}
+          </button>
+          <span className="text-gray-800 dark:text-dark-text">
+            Usou técnica de respiração ou meditação
+          </span>
+        </div>
+        <div>
+          <label htmlFor="gratitude" className="block text-sm font-medium text-gray-700 dark:text-dark-muted mb-1">
+            Frase de gratidão do dia
+          </label>
+          <textarea
+            id="gratitude"
+            value={mentalSleep.gratitude}
+            onChange={(e) => updateMentalData('gratitude', e.target.value)}
+            className="w-full p-2 border border-gray-300 dark:border-dark-border rounded-md bg-white dark:bg-dark-bg text-gray-800 dark:text-dark-text focus:ring-2 focus:ring-blue-500 dark:focus:ring-dark-accent focus:border-transparent transition-colors duration-200"
+            rows={2}
+            placeholder="Pelo que você é grato hoje?"
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default MentalSleep;
+</file>
+
+<file path="src/components/TrainingBody/TrainingBody.tsx">
+import React from 'react';
+import { useTheme } from '../../utils/ThemeContext';
+import { useAppData } from '../../utils/DataContext';
+
+const TrainingBody: React.FC = () => {
+  const { trainings, updateTraining, toggleTrainingCompleted } = useAppData();
+  useTheme(); // Use theme context
+
+  // Call the toggleTrainingCompleted function directly
+  const handleToggleTrainingCompleted = (index: number) => {
+    toggleTrainingCompleted(index);
+  };
+
+  return (
+    <div className="bg-white dark:bg-dark-surface p-6 rounded-xl shadow-soft dark:shadow-dark-soft transition-all duration-300 hover:shadow-soft-lg dark:hover:shadow-dark-lg animate-on-mount hover-lift">
+      <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-dark-text">Treino e Corpo</h2>
+      <div className="overflow-x-auto">
+        <table className="min-w-full bg-white dark:bg-dark-surface">
+          <thead>
+            <tr>
+              <th className="py-2 px-4 border-b dark:border-dark-border text-left text-sm font-medium text-gray-700 dark:text-dark-muted">Dia</th>
+              <th className="py-2 px-4 border-b dark:border-dark-border text-left text-sm font-medium text-gray-700 dark:text-dark-muted">Treino Planejado</th>
+              <th className="py-2 px-4 border-b dark:border-dark-border text-center text-sm font-medium text-gray-700 dark:text-dark-muted">Feito</th>
+            </tr>
+          </thead>
+          <tbody>
+            {trainings.map((training, index) => (
+              <tr key={training.day} className="hover:bg-gray-100 dark:hover:bg-dark-bg transition-colors duration-200">
+                <td className="py-2 px-4 border-b dark:border-dark-border text-gray-800 dark:text-dark-text">
+                  {training.day}
+                </td>
+                <td className="py-2 px-4 border-b dark:border-dark-border">
+                  <input
+                    type="text"
+                    value={training.plannedTraining}
+                    onChange={(e) => updateTraining(index, { plannedTraining: e.target.value })}
+                    placeholder="Tipo de treino"
+                    className="w-full p-1 border border-gray-300 dark:border-dark-border rounded focus:ring-2 focus:ring-blue-500 dark:focus:ring-dark-accent focus:border-transparent bg-white dark:bg-dark-bg text-gray-800 dark:text-dark-text transition-colors duration-200"
+                  />
+                </td>
+                <td className="py-2 px-4 border-b dark:border-dark-border text-center">
+                  <button
+                    onClick={() => handleToggleTrainingCompleted(index)}
+                    className={`w-6 h-6 flex items-center justify-center rounded border ${
+                      training.completed 
+                        ? 'bg-green-500 border-green-500 text-white' 
+                        : 'border-gray-300 dark:border-dark-border'
+                    } mx-auto transition-colors duration-200`}
+                  >
+                    {training.completed && "✓"}
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
+
+export default TrainingBody;
+</file>
+
+<file path="src/components/WeeklyReview/WeeklyReview.tsx">
+import React from 'react';
+import { useTheme } from '../../utils/ThemeContext';
+import { useAppData } from '../../utils/DataContext';
+
+const WeeklyReview: React.FC = () => {
+  const { weeklyReview, updateWeeklyReview } = useAppData();
+  useTheme(); // Use theme context
+
+  const exportAsText = () => {
+    const reviewText = `
+# Revisão Semanal
+
+## O que mandei bem
+${weeklyReview.didWell}
+
+## O que posso ajustar
+${weeklyReview.canImprove}
+
+## Objetivo da próxima semana
+${weeklyReview.nextWeekGoal}
+
+## O que quero evitar repetir
+${weeklyReview.toAvoid}
+`;
+    const blob = new Blob([reviewText], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `revisao-semanal-${new Date().toISOString().split('T')[0]}.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  return (
+    <div className="bg-white dark:bg-dark-surface p-6 rounded-xl shadow-soft dark:shadow-dark-soft transition-all duration-300 hover:shadow-soft-lg dark:hover:shadow-dark-lg animate-on-mount hover-lift">
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-2xl font-bold text-gray-800 dark:text-dark-text">Revisão Semanal</h2>
+        <button
+          onClick={exportAsText}
+          className="px-3 py-1 bg-blue-500 dark:bg-dark-accent text-white rounded-md hover:bg-blue-600 dark:hover:opacity-90 transition-colors duration-200"
+        >
+          Exportar como texto
+        </button>
+      </div>
+      <div className="grid grid-cols-1 gap-4">
+        <div>
+          <label htmlFor="didWell" className="block text-sm font-medium text-gray-700 dark:text-dark-muted mb-1">
+            O que mandei bem
+          </label>
+          <textarea
+            id="didWell"
+            value={weeklyReview.didWell}
+            onChange={(e) => updateWeeklyReview('didWell', e.target.value)}
+            className="w-full p-2 border border-gray-300 dark:border-dark-border rounded-md bg-white dark:bg-dark-bg text-gray-800 dark:text-dark-text focus:ring-2 focus:ring-blue-500 dark:focus:ring-dark-accent focus:border-transparent transition-colors duration-200"
+            rows={3}
+            placeholder="Quais foram suas vitórias?"
+          />
+        </div>
+        <div>
+          <label htmlFor="canImprove" className="block text-sm font-medium text-gray-700 dark:text-dark-muted mb-1">
+            O que posso ajustar
+          </label>
+          <textarea
+            id="canImprove"
+            value={weeklyReview.canImprove}
+            onChange={(e) => updateWeeklyReview('canImprove', e.target.value)}
+            className="w-full p-2 border border-gray-300 dark:border-dark-border rounded-md bg-white dark:bg-dark-bg text-gray-800 dark:text-dark-text focus:ring-2 focus:ring-blue-500 dark:focus:ring-dark-accent focus:border-transparent transition-colors duration-200"
+            rows={3}
+            placeholder="O que poderia ter sido melhor?"
+          />
+        </div>
+        <div>
+          <label htmlFor="nextWeekGoal" className="block text-sm font-medium text-gray-700 dark:text-dark-muted mb-1">
+            Objetivo da próxima semana
+          </label>
+          <textarea
+            id="nextWeekGoal"
+            value={weeklyReview.nextWeekGoal}
+            onChange={(e) => updateWeeklyReview('nextWeekGoal', e.target.value)}
+            className="w-full p-2 border border-gray-300 dark:border-dark-border rounded-md bg-white dark:bg-dark-bg text-gray-800 dark:text-dark-text focus:ring-2 focus:ring-blue-500 dark:focus:ring-dark-accent focus:border-transparent transition-colors duration-200"
+            rows={3}
+            placeholder="O que deseja alcançar na próxima semana?"
+          />
+        </div>
+        <div>
+          <label htmlFor="toAvoid" className="block text-sm font-medium text-gray-700 dark:text-dark-muted mb-1">
+            O que quero evitar repetir
+          </label>
+          <textarea
+            id="toAvoid"
+            value={weeklyReview.toAvoid}
+            onChange={(e) => updateWeeklyReview('toAvoid', e.target.value)}
+            className="w-full p-2 border border-gray-300 dark:border-dark-border rounded-md bg-white dark:bg-dark-bg text-gray-800 dark:text-dark-text focus:ring-2 focus:ring-blue-500 dark:focus:ring-dark-accent focus:border-transparent transition-colors duration-200"
+            rows={3}
+            placeholder="Quais comportamentos ou situações deseja evitar?"
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default WeeklyReview;
+</file>
+
+<file path="src/components/WeeklyView/WeeklyView.tsx">
+import React from 'react';
+import { useTheme } from '../../utils/ThemeContext';
+import { useAppData } from '../../utils/DataContext';
+
+const WeeklyView: React.FC = () => {
+  const { weeklyView, updateWeeklyView } = useAppData();
+  useTheme(); // Use theme context
+
+  return (
+    <div className="bg-white dark:bg-dark-surface p-6 rounded-xl shadow-soft dark:shadow-dark-soft transition-all duration-300 hover:shadow-soft-lg dark:hover:shadow-dark-lg hover-lift">
+      <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-dark-text">Visão da Semana</h2>
+      <div className="grid grid-cols-1 gap-4">
+        <div>
+          <label htmlFor="weekNumber" className="block text-sm font-medium text-gray-700 dark:text-dark-muted mb-1">
+            Semana atual
+          </label>
+          <input
+            type="text"
+            id="weekNumber"
+            value={weeklyView.weekNumber}
+            onChange={(e) => updateWeeklyView('weekNumber', e.target.value)}
+            className="w-full p-2 border border-gray-300 dark:border-dark-border rounded-md bg-white dark:bg-dark-bg text-gray-800 dark:text-dark-text focus:ring-2 focus:ring-blue-500 dark:focus:ring-dark-accent focus:border-transparent transition-colors duration-300"
+            placeholder="ex: Semana 21 de 2025"
+          />
+        </div>
+        <div>
+          <label htmlFor="weeklyObjective" className="block text-sm font-medium text-gray-700 dark:text-dark-muted mb-1">
+            Objetivo principal da semana
+          </label>
+          <input
+            type="text"
+            id="weeklyObjective"
+            value={weeklyView.weeklyObjective}
+            onChange={(e) => updateWeeklyView('weeklyObjective', e.target.value)}
+            className="w-full p-2 border border-gray-300 dark:border-dark-border rounded-md bg-white dark:bg-dark-bg text-gray-800 dark:text-dark-text focus:ring-2 focus:ring-blue-500 dark:focus:ring-dark-accent focus:border-transparent transition-colors duration-300"
+            placeholder="Qual seu objetivo essa semana?"
+          />
+        </div>
+        <div>
+          <label htmlFor="focusWord" className="block text-sm font-medium text-gray-700 dark:text-dark-muted mb-1">
+            Palavra de foco
+          </label>
+          <input
+            type="text"
+            id="focusWord"
+            value={weeklyView.focusWord}
+            onChange={(e) => updateWeeklyView('focusWord', e.target.value)}
+            className="w-full p-2 border border-gray-300 dark:border-dark-border rounded-md bg-white dark:bg-dark-bg text-gray-800 dark:text-dark-text focus:ring-2 focus:ring-blue-500 dark:focus:ring-dark-accent focus:border-transparent transition-colors duration-300"
+            placeholder="Uma palavra para se orientar"
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default WeeklyView;
+</file>
+
+<file path="src/utils/DataContext.tsx">
+import React, { createContext, useContext, useEffect, useMemo, useState, ReactNode } from 'react';
+import { saveToLocalStorage, loadFromLocalStorage } from './localStorage';
+
+// --- Types ---
+// Data types for all tracked app data and context
+export interface DailyHabit {
+  id: string;
+  label: string;
+  completed: boolean;
+}
+
+export interface Training {
+  day: string;
+  plannedTraining: string;
+  completed: boolean;
+}
+
+export interface MentalSleep {
+  sleepTime: string;
+  energyLevel: number;
+  usedBreathingTechnique: boolean;
+  gratitude: string;
+}
+
+export interface WeeklyReview {
+  didWell: string;
+  canImprove: string;
+  nextWeekGoal: string;
+  toAvoid: string;
+}
+
+export interface WeeklyView {
+  weekNumber: string;
+  weeklyObjective: string;
+  focusWord: string;
+}
+
+export interface AppData {
+  dailyHabits: DailyHabit[];
+  lastHabitReset: string;
+  trainings: Training[];
+  mentalSleep: MentalSleep;
+  lastMentalUpdate: string;
+  weeklyReview: WeeklyReview;
+  weeklyView: WeeklyView;
+}
+
+export interface DataContextType extends AppData {
+  toggleHabit: (id: string) => void;
+  resetAllHabits: () => void;
+  updateTraining: (index: number, value: Partial<Training>) => void;
+  toggleTrainingCompleted: (index: number) => void;
+  updateMentalData: (field: keyof MentalSleep, value: MentalSleep[keyof MentalSleep]) => void;
+  updateWeeklyReview: (field: keyof WeeklyReview, value: WeeklyReview[keyof WeeklyReview]) => void;
+  updateWeeklyView: (field: keyof WeeklyView, value: WeeklyView[keyof WeeklyView]) => void;
+}
+
+const defaultData: AppData = {
+  dailyHabits: [
+    { id: 'wake-up', label: 'Acordou às 05:30', completed: false },
+    { id: 'water', label: 'Tomou 15 copos de água (3L)', completed: false },
+    { id: 'workout', label: 'Fez treino (JJ/academia/skate)', completed: false },
+    { id: 'reading', label: 'Leu antes de dormir', completed: false },
+    { id: 'smoking', label: 'Fumou com leveza (até 3x)', completed: false },
+    { id: 'leisure', label: 'Pausa de ócio / tempo com Arthur', completed: false },
+    { id: 'focus', label: 'Check de foco mental nos blocos', completed: false },
+    { id: 'meditation', label: 'Meditou 10 minutos', completed: false },
+    { id: 'plan_day', label: 'Planejou o dia', completed: false },
+    { id: 'plan_week', label: 'Planejou a semana', completed: false },
+    { id: 'gratitude', label: 'Gratidão do dia', completed: false }
+  ],
+  lastHabitReset: '',
+  trainings: [
+    { day: 'Segunda', plannedTraining: '', completed: false },
+    { day: 'Terça', plannedTraining: '', completed: false },
+    { day: 'Quarta', plannedTraining: '', completed: false },
+    { day: 'Quinta', plannedTraining: '', completed: false },
+    { day: 'Sexta', plannedTraining: '', completed: false },
+    { day: 'Sábado', plannedTraining: '', completed: false },
+    { day: 'Domingo', plannedTraining: '', completed: false }
+  ],
+  mentalSleep: {
+    sleepTime: '',
+    energyLevel: 3,
+    usedBreathingTechnique: false,
+    gratitude: ''
+  },
+  lastMentalUpdate: '',
+  weeklyReview: {
+    didWell: '',
+    canImprove: '',
+    nextWeekGoal: '',
+    toAvoid: ''
+  },
+  weeklyView: {
+    weekNumber: '',
+    weeklyObjective: '',
+    focusWord: ''
+  }
+};
+
+const DataContext = createContext<DataContextType | undefined>(undefined);
+
+interface DataProviderProps {
+  children: ReactNode;
+}
+
+export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
+  const [appData, setAppData] = useState<AppData>(defaultData);
+
+  // Load all data from localStorage on initial mount
+  // (and reset daily/mental data if needed)
+  useEffect(() => {
+    const loadedData: AppData = {
+      ...defaultData,
+      ...loadFromLocalStorage<AppData>('appData', defaultData)
+    };
+    setAppData(loadedData);
+
+    // Reset habits if needed (if last reset is not today)
+    const today = new Date().toDateString();
+    if (loadedData.lastHabitReset !== today) {
+      setAppData(prev => ({
+        ...prev,
+        dailyHabits: prev.dailyHabits.map(h => ({ ...h, completed: false })),
+        lastHabitReset: today
+      }));
+    }
+    // Reset mental items if needed (if last update is not today)
+    if (loadedData.lastMentalUpdate !== today) {
+      setAppData(prev => ({
+        ...prev,
+        mentalSleep: { ...prev.mentalSleep, gratitude: '', usedBreathingTechnique: false },
+        lastMentalUpdate: today
+      }));
+    }
+  }, []);
+
+  // --- Actions ---
+  // All state update functions for context consumers
+  const toggleHabit = (id: string): void => {
+    setAppData(prev => {
+      const newHabits = prev.dailyHabits.map(h => h.id === id ? { ...h, completed: !h.completed } : h);
+      const updated = { ...prev, dailyHabits: newHabits };
+      saveToLocalStorage('appData', updated);
+      return updated;
+    });
+  };
+
+  const resetAllHabits = (): void => {
+    const today = new Date().toDateString();
+    setAppData(prev => {
+      const updated = {
+        ...prev,
+        dailyHabits: prev.dailyHabits.map(h => ({ ...h, completed: false })),
+        lastHabitReset: today
+      };
+      saveToLocalStorage('appData', updated);
+      return updated;
+    });
+  };
+
+  const updateTraining = (index: number, value: Partial<Training>): void => {
+    setAppData(prev => {
+      if (!Array.isArray(prev.trainings) || index < 0 || index >= prev.trainings.length) return prev;
+      const newTrainings = [...prev.trainings];
+      newTrainings[index] = { ...newTrainings[index], ...value };
+      const updated = { ...prev, trainings: newTrainings };
+      saveToLocalStorage('appData', updated);
+      return updated;
+    });
+  };
+
+  const toggleTrainingCompleted = (index: number): void => {
+    setAppData(prev => {
+      if (!Array.isArray(prev.trainings) || index < 0 || index >= prev.trainings.length) return prev;
+      const newTrainings = [...prev.trainings];
+      newTrainings[index] = { ...newTrainings[index], completed: !newTrainings[index].completed };
+      const updated = { ...prev, trainings: newTrainings };
+      saveToLocalStorage('appData', updated);
+      return updated;
+    });
+  };
+
+  const updateMentalData = (field: keyof MentalSleep, value: MentalSleep[keyof MentalSleep]): void => {
+    setAppData(prev => {
+      const updated = {
+        ...prev,
+        mentalSleep: { ...prev.mentalSleep, [field]: value },
+        lastMentalUpdate: new Date().toDateString()
+      };
+      saveToLocalStorage('appData', updated);
+      return updated;
+    });
+  };
+
+  const updateWeeklyReview = (field: keyof WeeklyReview, value: WeeklyReview[keyof WeeklyReview]): void => {
+    setAppData(prev => {
+      const updated = {
+        ...prev,
+        weeklyReview: { ...prev.weeklyReview, [field]: value }
+      };
+      saveToLocalStorage('appData', updated);
+      return updated;
+    });
+  };
+
+  const updateWeeklyView = (field: keyof WeeklyView, value: WeeklyView[keyof WeeklyView]): void => {
+    setAppData(prev => {
+      const updated = {
+        ...prev,
+        weeklyView: { ...prev.weeklyView, [field]: value }
+      };
+      saveToLocalStorage('appData', updated);
+      return updated;
+    });
+  };
+
+  // --- Context value ---
+  // Memoized context value for provider
+  const contextValue = useMemo<DataContextType>(() => ({
+    ...appData,
+    toggleHabit,
+    resetAllHabits,
+    updateTraining,
+    toggleTrainingCompleted,
+    updateMentalData,
+    updateWeeklyReview,
+    updateWeeklyView
+  }), [appData]);
+
+  return (
+    <DataContext.Provider value={contextValue}>
+      {children}
+    </DataContext.Provider>
+  );
+};
+
+export const useAppData = (): DataContextType => {
+  const context = useContext(DataContext);
+  if (!context) {
+    throw new Error('useAppData must be used within a DataProvider');
+  }
+  return context;
+};
+</file>
+
+<file path="src/utils/ThemeContext.tsx">
+import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import { saveToLocalStorage, loadFromLocalStorage } from './localStorage';
+
+// Constant for localStorage key (for dark mode preference)
+const DARK_MODE_KEY = 'darkMode' as const;
+
+// Theme context value type (for strict typing)
+export interface ThemeContextType {
+  darkMode: boolean;
+  toggleDarkMode: () => void;
+}
+
+// Create a strictly typed context for theme
+const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+
+// Custom hook for consuming the theme context
+export const useTheme = (): ThemeContextType => {
+  const context = useContext(ThemeContext);
+  if (!context) {
+    throw new Error('useTheme must be used within a ThemeProvider');
+  }
+  return context;
+};
+
+// Provider props type for ThemeProvider
+interface ThemeProviderProps {
+  children: ReactNode;
+}
+
+export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
+  const [darkMode, setDarkMode] = useState<boolean>(false);
+
+  // Initialize theme based on localStorage or user preference
+  useEffect(() => {
+    try {
+      if (typeof window === 'undefined') return;
+      // Prefer explicit utility for localStorage (robustness)
+      const stored = loadFromLocalStorage(DARK_MODE_KEY, null);
+      let isDark: boolean;
+      if (typeof stored === 'string') {
+        isDark = stored === 'true';
+      } else if (typeof stored === 'boolean') {
+        isDark = stored;
+      } else {
+        isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      setDarkMode(isDark);
+    } catch (error) {
+      // Warn but do not crash if error
+      console.warn('Error initializing dark mode:', error);
+    }
+  }, []);
+
+  // Toggle dark mode and persist to localStorage
+  const toggleDarkMode = (): void => {
+    setDarkMode((prevMode) => {
+      const newMode = !prevMode;
+      try {
+        saveToLocalStorage(DARK_MODE_KEY, String(newMode));
+      } catch (error) {
+        console.warn('Error saving dark mode preference:', error);
+      }
+      return newMode;
+    });
+  };
+
+  // Apply or remove dark class on <html> element for Tailwind
+  useEffect(() => {
+    try {
+      if (typeof document !== 'undefined' && document.documentElement) {
+        if (darkMode) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      }
+    } catch (error) {
+      console.warn('Error applying dark mode class:', error);
+    }
+  }, [darkMode]);
+
+  return (
+    <ThemeContext.Provider value={{ darkMode, toggleDarkMode }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+};
+</file>
+
+<file path="src/index.css">
+/*
+  index.css review:
+  - Most styles are customizations for base, dark mode, and animation.
+  - Button, hover, and animation classes are used in components and are not repeated unnecessarily.
+  - The only improvement: add a comment at the top to clarify Tailwind + custom CSS usage for future maintainers.
+*/
+
+// Tailwind base, components, and utilities are imported below. Custom CSS is used for global styles, dark mode, and animation classes.
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light;
+  color: #404040;
+  background-color: #f5f5f5;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.dark {
+  color-scheme: dark;
+  color: #e0e0e0;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Animation classes */
+.animate-on-mount {
+  opacity: 0;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(10px);
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0);
+  }
+}
+
+/* Enhanced hover effects */
+.hover-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.dark .hover-lift:hover {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+/* Button styles with dark mode support */
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #f3f4f6;
+  color: #1f2937;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.dark button {
+  background-color: #374151;
+  color: #e5e7eb;
+}
+
+button:hover {
+  border-color: #3b82f6;
+  background-color: #eff6ff;
+}
+
+.dark button:hover {
+  border-color: #60a5fa;
+  background-color: #1e3a8a;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.dark button:focus,
+.dark button:focus-visible {
+  outline: 2px solid #60a5fa;
+}
+
+/* Form controls with dark mode support */
+input, textarea, select {
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.dark input, .dark textarea, .dark select {
+  color-scheme: dark;
+}
+
+/* App.css additions */
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+</file>
+
+<file path="package.json">
+{
+  "name": "life-dash",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.25.0",
+    "@headlessui/react": "^2.2.3",
+    "@heroicons/react": "^2.2.0",
+    "@types/react": "^19.1.4",
+    "@types/react-dom": "^19.1.5",
+    "@vitejs/plugin-react": "^4.4.1",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^9.25.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^16.0.0",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5"
+  }
+}
+</file>
+
+<file path="src/utils/localStorage.ts">
+// Utility functions for localStorage management (TypeScript, strict)
+// Provides robust, typed wrappers for localStorage with error handling
+
+let isLocalStorageAvailableCache: boolean | null = null;
+
+export const isLocalStorageAvailable = (): boolean => {
+  if (isLocalStorageAvailableCache !== null) {
+    return isLocalStorageAvailableCache;
+  }
+  if (typeof window === 'undefined' || !window.localStorage) {
+    isLocalStorageAvailableCache = false;
+    return false;
+  }
+  try {
+    const testKey = '__test_localStorage__';
+    window.localStorage.setItem(testKey, 'test');
+    const testValue = window.localStorage.getItem(testKey);
+    window.localStorage.removeItem(testKey);
+    isLocalStorageAvailableCache = testValue === 'test';
+    return isLocalStorageAvailableCache;
+  } catch {
+    isLocalStorageAvailableCache = false;
+    return false;
+  }
+};
+
+export const saveToLocalStorage = (key: string, data: unknown): void => {
+  if (!isLocalStorageAvailable()) return;
+  try {
+    const serializedData = typeof data === 'string' ? data : JSON.stringify(data);
+    window.localStorage.setItem(key, serializedData);
+  } catch (error) {
+    // Log error for debugging (do not crash app)
+    console.warn(`Error saving to localStorage for key "${key}":`, error);
+  }
+};
+
+export const loadFromLocalStorage = <T = unknown>(key: string, defaultValue: T | null = null): T | null => {
+  if (!isLocalStorageAvailable()) return defaultValue;
+  try {
+    const item = window.localStorage.getItem(key);
+    if (!item) return defaultValue;
+    try {
+      return JSON.parse(item) as T;
+    } catch (error) {
+      // If not JSON, return as string (fallback for legacy/plain values)
+      if (typeof item === 'string') return (item as unknown) as T;
+      console.warn(`Error parsing localStorage item for key "${key}":`, error);
+      return defaultValue;
+    }
+  } catch (error) {
+    console.warn(`Error loading from localStorage for key "${key}":`, error);
+    return defaultValue;
+  }
+};
+
+export const clearLocalStorageItem = (key: string): void => {
+  try {
+    if (isLocalStorageAvailable()) {
+      window.localStorage.removeItem(key);
+    }
+  } catch (error) {
+    console.warn(`Error clearing localStorage item for key "${key}":`, error);
+  }
+};
+</file>
+
+</files>

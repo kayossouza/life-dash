@@ -2,6 +2,7 @@
 // Provides robust, typed wrappers for localStorage with error handling
 
 let isLocalStorageAvailableCache: boolean | null = null;
+const TEST_KEY = '__test_localStorage__' as const;
 
 export const isLocalStorageAvailable = (): boolean => {
   if (isLocalStorageAvailableCache !== null) {
@@ -12,10 +13,9 @@ export const isLocalStorageAvailable = (): boolean => {
     return false;
   }
   try {
-    const testKey = '__test_localStorage__';
-    window.localStorage.setItem(testKey, 'test');
-    const testValue = window.localStorage.getItem(testKey);
-    window.localStorage.removeItem(testKey);
+    window.localStorage.setItem(TEST_KEY, 'test');
+    const testValue = window.localStorage.getItem(TEST_KEY);
+    window.localStorage.removeItem(TEST_KEY);
     isLocalStorageAvailableCache = testValue === 'test';
     return isLocalStorageAvailableCache;
   } catch {
@@ -63,3 +63,12 @@ export const clearLocalStorageItem = (key: string): void => {
     console.warn(`Error clearing localStorage item for key "${key}":`, error);
   }
 };
+
+// Refactored: Extracted utility to get current date key for daily resets
+export function getTodayKey(resetHour: number = 5): string {
+  const now = new Date();
+  if (now.getHours() < resetHour) {
+    now.setDate(now.getDate() - 1);
+  }
+  return now.toDateString();
+}

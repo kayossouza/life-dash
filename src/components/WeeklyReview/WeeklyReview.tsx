@@ -1,10 +1,8 @@
 import React from 'react';
-import { useTheme } from '../../utils/ThemeContext';
 import { useAppData } from '../../utils/DataContext';
 
 const WeeklyReview: React.FC = () => {
   const { weeklyReview, updateWeeklyReview } = useAppData();
-  useTheme(); // Use theme context
 
   const exportAsText = () => {
     const reviewText = `
