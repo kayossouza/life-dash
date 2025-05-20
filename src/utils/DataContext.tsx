@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useMemo, useState, ReactNo
 import { saveToLocalStorage, loadFromLocalStorage } from './localStorage';
 
 // --- Types ---
+// Data types for all tracked app data and context
 export interface DailyHabit {
   id: string;
   label: string;
@@ -108,6 +109,7 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
   const [appData, setAppData] = useState<AppData>(defaultData);
 
   // Load all data from localStorage on initial mount
+  // (and reset daily/mental data if needed)
   useEffect(() => {
     const loadedData: AppData = {
       ...defaultData,
@@ -115,7 +117,7 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
     };
     setAppData(loadedData);
 
-    // Reset habits if needed
+    // Reset habits if needed (if last reset is not today)
     const today = new Date().toDateString();
     if (loadedData.lastHabitReset !== today) {
       setAppData(prev => ({
@@ -124,7 +126,7 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
         lastHabitReset: today
       }));
     }
-    // Reset mental items if needed
+    // Reset mental items if needed (if last update is not today)
     if (loadedData.lastMentalUpdate !== today) {
       setAppData(prev => ({
         ...prev,
@@ -135,6 +137,7 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
   }, []);
 
   // --- Actions ---
+  // All state update functions for context consumers
   const toggleHabit = (id: string): void => {
     setAppData(prev => {
       const newHabits = prev.dailyHabits.map(h => h.id === id ? { ...h, completed: !h.completed } : h);
@@ -214,6 +217,7 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
   };
 
   // --- Context value ---
+  // Memoized context value for provider
   const contextValue = useMemo<DataContextType>(() => ({
     ...appData,
     toggleHabit,

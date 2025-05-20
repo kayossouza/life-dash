@@ -1,16 +1,16 @@
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import { saveToLocalStorage, loadFromLocalStorage } from './localStorage';
 
-// Constant for localStorage key
+// Constant for localStorage key (for dark mode preference)
 const DARK_MODE_KEY = 'darkMode' as const;
 
-// Theme context value type
+// Theme context value type (for strict typing)
 export interface ThemeContextType {
   darkMode: boolean;
   toggleDarkMode: () => void;
 }
 
-// Create a strictly typed context
+// Create a strictly typed context for theme
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 // Custom hook for consuming the theme context
@@ -22,7 +22,7 @@ export const useTheme = (): ThemeContextType => {
   return context;
 };
 
-// Provider props type
+// Provider props type for ThemeProvider
 interface ThemeProviderProps {
   children: ReactNode;
 }
@@ -34,7 +34,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   useEffect(() => {
     try {
       if (typeof window === 'undefined') return;
-      // Prefer explicit utility for localStorage
+      // Prefer explicit utility for localStorage (robustness)
       const stored = loadFromLocalStorage(DARK_MODE_KEY, null);
       let isDark: boolean;
       if (typeof stored === 'string') {
@@ -46,7 +46,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
       }
       setDarkMode(isDark);
     } catch (error) {
-      // Warn but do not crash
+      // Warn but do not crash if error
       console.warn('Error initializing dark mode:', error);
     }
   }, []);
@@ -64,7 +64,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     });
   };
 
-  // Apply or remove dark class on <html> element
+  // Apply or remove dark class on <html> element for Tailwind
   useEffect(() => {
     try {
       if (typeof document !== 'undefined' && document.documentElement) {

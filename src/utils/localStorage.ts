@@ -1,4 +1,5 @@
 // Utility functions for localStorage management (TypeScript, strict)
+// Provides robust, typed wrappers for localStorage with error handling
 
 let isLocalStorageAvailableCache: boolean | null = null;
 
@@ -29,7 +30,7 @@ export const saveToLocalStorage = (key: string, data: unknown): void => {
     const serializedData = typeof data === 'string' ? data : JSON.stringify(data);
     window.localStorage.setItem(key, serializedData);
   } catch (error) {
-    // Log error for debugging
+    // Log error for debugging (do not crash app)
     console.warn(`Error saving to localStorage for key "${key}":`, error);
   }
 };
@@ -42,7 +43,7 @@ export const loadFromLocalStorage = <T = unknown>(key: string, defaultValue: T |
     try {
       return JSON.parse(item) as T;
     } catch (error) {
-      // If not JSON, return as string
+      // If not JSON, return as string (fallback for legacy/plain values)
       if (typeof item === 'string') return (item as unknown) as T;
       console.warn(`Error parsing localStorage item for key "${key}":`, error);
       return defaultValue;
