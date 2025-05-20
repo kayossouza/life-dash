@@ -28,7 +28,10 @@ export const saveToLocalStorage = (key: string, data: unknown): void => {
   try {
     const serializedData = typeof data === 'string' ? data : JSON.stringify(data);
     window.localStorage.setItem(key, serializedData);
-  } catch {}
+  } catch (error) {
+    // Log error for debugging
+    console.warn(`Error saving to localStorage for key "${key}":`, error);
+  }
 };
 
 export const loadFromLocalStorage = <T = unknown>(key: string, defaultValue: T | null = null): T | null => {
@@ -38,11 +41,14 @@ export const loadFromLocalStorage = <T = unknown>(key: string, defaultValue: T |
     if (!item) return defaultValue;
     try {
       return JSON.parse(item) as T;
-    } catch {
+    } catch (error) {
       // If not JSON, return as string
-      return (item as unknown) as T;
+      if (typeof item === 'string') return (item as unknown) as T;
+      console.warn(`Error parsing localStorage item for key "${key}":`, error);
+      return defaultValue;
     }
-  } catch {
+  } catch (error) {
+    console.warn(`Error loading from localStorage for key "${key}":`, error);
     return defaultValue;
   }
 };
@@ -52,5 +58,7 @@ export const clearLocalStorageItem = (key: string): void => {
     if (isLocalStorageAvailable()) {
       window.localStorage.removeItem(key);
     }
-  } catch {}
+  } catch (error) {
+    console.warn(`Error clearing localStorage item for key "${key}":`, error);
+  }
 };
