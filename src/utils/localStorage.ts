@@ -1,7 +1,9 @@
 // Utility functions for localStorage management (TypeScript, strict)
 // Provides robust, typed wrappers for localStorage with error handling
 
-let isLocalStorageAvailableCache: boolean | null = null;
+// Export cache for testability
+export let isLocalStorageAvailableCache: boolean | null = null;
+export function _resetLocalStorageCache() { isLocalStorageAvailableCache = null; }
 const TEST_KEY = '__test_localStorage__' as const;
 
 export const isLocalStorageAvailable = (): boolean => {

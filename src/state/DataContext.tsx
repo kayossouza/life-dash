@@ -1,8 +1,7 @@
 import React, { createContext, useContext, useEffect, useMemo, useState, ReactNode } from 'react';
-import { saveToLocalStorage, loadFromLocalStorage, getTodayKey } from './localStorage';
+import { saveToLocalStorage, loadFromLocalStorage, getTodayKey } from '../utils/localStorage';
 import type {
   AppData,
-  DailyHabit,
   Training,
   MentalSleep,
   WeeklyReview,

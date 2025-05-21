@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAppData } from '../../utils/DataContext';
+import { useAppData } from '../../state/DataContext';
 
 const TrainingBody: React.FC = () => {
   const { trainings, updateTraining, toggleTrainingCompleted } = useAppData();

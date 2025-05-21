@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAppData } from '../../utils/DataContext';
+import { useAppData } from '../../state/DataContext';
 
 const DailyHabits: React.FC = () => {
   const { dailyHabits, toggleHabit, resetAllHabits } = useAppData();

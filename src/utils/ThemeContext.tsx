@@ -3,6 +3,22 @@ import { saveToLocalStorage, loadFromLocalStorage } from './localStorage';
 import { ThemeContextType } from '../types/ThemeContext';
 
 
+// Mock window.matchMedia for Jest (jsdom does not implement it)
+if (typeof window !== 'undefined' && !window.matchMedia) {
+  window.matchMedia = function (query) {
+    return {
+      matches: false,
+      media: query,
+      onchange: null,
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      addListener: () => {},
+      removeListener: () => {},
+      dispatchEvent: () => false,
+    } as MediaQueryList;
+  };
+}
+
 // Constant for localStorage key (for dark mode preference)
 const DARK_MODE_KEY = 'darkMode' as const;
 
